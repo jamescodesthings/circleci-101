@@ -1,8 +1,22 @@
 version: 2
 jobs:
-  build:
+  one:
     docker:
       - image: circleci/node:6.11
     steps:
       - checkout
-      - run: notacommand
+      - run: echo "Hello one"
+      - run: sleep 25
+  two:
+    docker:
+      - image: circleci/node:6.11
+    steps:
+      - checkout
+      - run: echo "Hello Two"
+      - run: sleep 10
+workflows:
+  version: 2
+  one_and_two:
+    jobs:
+      - one
+      - two
